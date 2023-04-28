@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300&family=Oswald:wght@600&display=swap');
+
+.component-contenedor{
+    background-color: black;
+}
+
+
+.contenedor-detail{
+    position: relative;
+    margin-left: 30%;
+    margin-right: 50%;
+    width: 40%;
+    padding: 1em 0em;
+    box-shadow: 10px 8px 10px 5px rgb(21, 21, 21);
+    font-family: 'Chakra Petch', sans-serif;
+    background-color: gray;
+    cursor: pointer;
+    border-radius: 3px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.contenedor-detail:hover{
+    border: 3px solid white;
+}
+
+.img-detail{
+    border: 1px solid black;
+    border-radius: 3.5px;
+    width: 70%;
+}
+
+
+
+.nombre-detail{
+    margin:0;
+    position: absolute;
+    top: 230px;
+    margin-left: 17%;
+    left: 3px;
+    font-weight: bold;
+    font-family: "Roboto" sans-serif;
+    background-color: #e0dd09;
+    color: rgb(8, 8, 8);
+    box-shadow: 6px 2px 1px rgb(36, 36, 36);
+    padding-left: 4%;
+    padding-right: 4%;
+}
+
+.color-primary{
+    font-weight: bolder;
+    color: #006414;
+}
+
+.color-secundary{
+    font-weight: bolder;
+    color: #56008c;
+}

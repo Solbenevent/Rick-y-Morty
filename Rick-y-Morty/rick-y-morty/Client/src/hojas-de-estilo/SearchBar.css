@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300&family=Oswald:wght@600&display=swap');
+
+.contenedor-search{
+height: 40px;
+    justify-items: flex-end;
+    justify-content: flex-end;
+
+}
+
+
+.search-input{
+  justify-content: flex-end;
+  height: 25px;
+  cursor: pointer;
+  margin-top: 4px;
+}
+
+.search-btn{
+  height: 25px;
+  margin-left: 5px;
+  font-family: 'Chakra Petch', sans-serif;
+  font-weight: bold;
+  cursor: pointer;
+  justify-content: flex-end;
+}
