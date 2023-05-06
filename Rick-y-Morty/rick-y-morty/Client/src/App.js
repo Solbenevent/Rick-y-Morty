@@ -1,3 +1,4 @@
+import axios from "axios";
  import './App.css';
 import Cards from './components/Cards.jsx';
 import Nav from './components/Nav';
@@ -7,7 +8,6 @@ import { Route, Routes, useLocation, useNavigate} from "react-router-dom";
 import About from './components/About';
 import Form from './components/Form';
 import Favorites from './components/Favorites';
-import axios from "axios";
 
 function App() {
   const [characters, setCharacters] = useState([]);
