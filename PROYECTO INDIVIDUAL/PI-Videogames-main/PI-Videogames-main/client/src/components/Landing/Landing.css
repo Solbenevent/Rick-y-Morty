@@ -1,26 +1,38 @@
 
 .container{
+    background-color: rgb(33, 32, 32);  
+    height: 100vh;
+    display: flex;
+    justify-content: center;
     
-        margin: 0; /* Elimina los márgenes predeterminados del body */
-        padding: 0; /* Elimina el padding predeterminado del body */
-        background-color: black; /* Establece el color de fondo en negro */
-        min-height: 100vh; /* Establece la altura mínima en el 100% del viewport */
-        display: flex; /* Utiliza flexbox para alinear verticalmente el contenido */
-        align-items: center; /* Centra verticalmente el contenido */
-      
       
 }
 
 .welcome{
-    width: 35%;
+    position: fixed;
+    top: calc(50% - 300px); /* Ajusta la posición vertical según el tamaño de la imagen */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40%;
 }
 
 .icon{
-    width: 10%;
+    width: 100%;
 }
 
 .button{
-    margin: 0;
-    padding: 0;
-    background-color: black;
+        position: fixed;
+        bottom: 0;
+        right: 50%;
+        transform: translateX(50%);
+        background-color: rgb(33,32,32);
+        width: 50px;
+        height: 50px;
+        bottom: 20px;
+      }
+.image{
+    position: fixed;
+    top: calc(50% - 200px); /* Ajusta la posición vertical según el tamaño de la imagen */
+    left: 50%;
+    transform: translateX(-50%);
 }

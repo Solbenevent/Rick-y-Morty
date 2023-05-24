@@ -1,5 +1,5 @@
-import { GET_GAMES, GET_DETAIL, GET_GENRES, ORDER_ASC_RATING, ORDER_DESC_RATING, FILTER_BY_GENRE, ORDER_BY_CREATOR, SET_PAGE} from "./actionTypes";
-import  axios from "axios";
+import axios, { all } from "axios";
+import { GET_GAMES, GET_DETAIL, GET_GENRES, ORDER_ASC_RATING, ORDER_DESC_RATING, FILTER_BY_GENRE, ORDER_BY_CREATOR, SET_PAGE, CREATE_VIDEOGAME, ORDER_BY_API} from "./actionTypes";
 
 export const getVideogames = () => {
    return  async (dispatch) => {
@@ -77,37 +77,43 @@ export const orderAsc = (type) => (dispatch, getState) => {
      });
  }
 
-export const orderByCreator = (source) => (dispatch, getState) => {
-   const videogames = getState().videogames.filter(function (G){
-      return G.source === source
-   });
-   dispatch({
-      type: ORDER_BY_CREATOR,
-      payload: {
-         videogames, 
-         source,
-      }
-   });
+export const orderByCreator = (origin) => (dispatch, getState) => {
+   const allVideogames = getState().videogames;
+   const gameCreated = getState().createVideogame;
+
+   if(origin === "API"){
+    dispatch({
+      type: ORDER_BY_API,
+      payload: allVideogames,
+    })
+   }
+   if(origin === "Created"){
+    dispatch({
+      type:ORDER_BY_CREATOR,
+      payload: gameCreated,
+    })
+   }
 }
 
 
-export const filterByGenre = (genres) => (dispatch, getState) => {
+export const filterByGenre = (genre) => (dispatch, getState) => {
+  const filteredVideogames = getState().videogames;
    let filteredGames = [];
 
-   if (genres === "All") {
-     filteredGames = getState().videogames;
-   } else {
-     filteredGames = getState().videogames.filter((game) =>
-       game.genres.includes(genres)
-     )
-   };
+   if(genre === "All"){
+    filteredGames = filteredVideogames;
+   } 
+   if(genre !== "All") {
+    filteredGames = filteredVideogames.filter(game => game.genre === genre);
+   }
    dispatch({
-     type: "FILTER_BY_GENRE",
-     payload: {
-       genres,
-       videogameGenre: filteredGames,
-     },
-   });
+    type: FILTER_BY_GENRE,
+    payload: {
+      genre,
+      videogameGenre: filteredGames,
+    }
+   })
+
  };
 
  export const setPage = (page) => {
@@ -117,15 +123,16 @@ export const filterByGenre = (genres) => (dispatch, getState) => {
   }
  }
 
-
-
-
-// if (action.payload === "abc-asc") {
-//    return {
-//        ...state,
-//        filteredVideoGames: [...state.filteredVideoGames].sort((a, b) =>
-//            a.name.localeCompare(b.name)
-//        ),
-//        orderState: action.payload,
-//    };
-// }
+ export const createVideogame = (gameData) => {
+  return async (dispatch) => {
+    await axios.post("http://localhost:3001/videogame", gameData)
+    .then(({ data }) => {
+      return dispatch({
+        type: CREATE_VIDEOGAME,
+        payload: data,
+      });
+    });   
+    
+  }
+ };
+ 

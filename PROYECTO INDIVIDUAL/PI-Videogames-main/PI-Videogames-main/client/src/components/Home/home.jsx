@@ -4,7 +4,8 @@ import { getVideogames } from "../../actions";
 import Cards from "../Cards/Cards";
 import Filter from "../FilterandOrder/Filter";
 import Pagination from "../Pagination/Pagination";
-import { all } from "axios";
+import SearchBar from "../SearchBar/searchBar";
+import "../Home/Home.css";
 
 const Home = () => {
    const dispatch = useDispatch();
@@ -35,9 +36,12 @@ const Home = () => {
    const gamesToShow = allVideogames.slice(startIndex, endIndex);
 
    return (
-      <div className="container">
+      <div className="container-home">
       <div>
-         <h1 className="title">All Videogames are here!</h1>
+         <SearchBar />
+         <div className="container-name">
+         <h1 className="title">ALL VIDEOGAMES HERE!</h1>
+         </div>
          <Filter  />
          <Cards videogames={gamesToShow} />
          <footer>

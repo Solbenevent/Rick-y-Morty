@@ -1,4 +1,4 @@
-import { GET_GAMES, GET_DETAIL, GET_GENRES, ORDER_ASC_RATING, ORDER_DESC_RATING, ORDER_BY_CREATOR, FILTER_BY_GENRE} from "../actions/actionTypes";
+import { GET_GAMES, GET_DETAIL, GET_GENRES, ORDER_ASC_RATING, ORDER_DESC_RATING, ORDER_BY_CREATOR, FILTER_BY_GENRE, CREATE_VIDEOGAME, ORDER_BY_API} from "../actions/actionTypes";
 
 const initialState ={
    videogames: [],
@@ -11,8 +11,7 @@ const initialState ={
    filterBy: "All",
    filteredVideogames: [],
    currentPage: 1,
-   itemsPerPage: 15
-   
+   itemsPerPage: 15, 
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -42,14 +41,24 @@ const rootReducer = (state = initialState, action) => {
     case ORDER_BY_CREATOR:
         return {
             ...state,
-            filteredVideogames: action.payload.videogames,
-            filterBy: action.payload.source,
+            filteredVideogames: action.payload,
         }
+    case ORDER_BY_API:
+        return {
+            ...state,
+            filteredVideogames: action.payload
+        }    
     case FILTER_BY_GENRE:
         return{
             ...state,
-            filterBy: action.payload
+            filterBy: action.payload.genre,
+            filteredVideogames: action.payload,
         }
+    case CREATE_VIDEOGAME:
+        return {
+            ...state,
+            createVideogame: action.payload
+        }    
         default:
             return {...state}
     };
